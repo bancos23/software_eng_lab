@@ -29,7 +29,7 @@ Final practice project for the **Software Engineering Laboratory** course (2024/
 
 **Install dependencies**
 
-    npm install -y
+    npm install
 
 ---
 
