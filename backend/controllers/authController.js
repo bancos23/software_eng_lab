@@ -13,12 +13,16 @@ exports.login = async (req, res) => {
   }
 
   const foundUser = rows[0];
-  
+
   const passwordMatch = foundUser.password === passwd; // WIP
   if(!passwordMatch) {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
 
-  const sessionId = 0xDEADBEEF; // WIP: Generate a real session ID
+  const sessionId = Math.random().toString(36).substring(2, 15);
   res.json({sessionId: sessionId});
 };
+
+exports.logout = async (req, res) => {
+  res.json({ message: 'Logout successful' });
+}

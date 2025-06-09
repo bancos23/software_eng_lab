@@ -7,11 +7,10 @@ angular.module('app')
             user: $scope.user.username,
             passwd: $scope.user.password
         }).then(function(response) {
-            console.log(response.data);
+            sessionStorage.setItem('session_id', response.data.sessionId);
+            $location.path('/');
         }).catch(function(error) {
             $scope.error = 'Invalid username or password';
-            console.error('Login error:', error);
-
             $timeout(function() {
                 $scope.error = null;
             }, 5000);
