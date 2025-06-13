@@ -8,9 +8,9 @@ angular.module('app')
             passwd: $scope.user.password
         }).then(function(response) {
             sessionStorage.setItem('session_id', response.data.sessionId);
-            $location.path('/');
+            $location.path('/admin');
         }).catch(function(error) {
-            $scope.error = 'Invalid username or password';
+            $scope.error = error.data.error || 'Login failed. Please try again.';
             $timeout(function() {
                 $scope.error = null;
             }, 5000);
