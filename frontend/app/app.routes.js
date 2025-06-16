@@ -34,7 +34,8 @@ angular.module('app').config(function($routeProvider) {
 
     .when('/home', {
             templateUrl: 'app/views/home.html',
-            controller: 'homeController'
+            controller: 'homeController',
+            title: 'Home'
         })
 
 
