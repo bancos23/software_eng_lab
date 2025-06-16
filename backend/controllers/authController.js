@@ -8,19 +8,20 @@ exports.login = async (req, res) => {
     [user]
   );
 
-  if(rows.length === 0) {
+  if(rows.length === 0)
     return res.status(401).json({ error: 'Invalid credentials' });
-  }
 
   const foundUser = rows[0];
 
   const passwordMatch = foundUser.password === passwd; // WIP
-  if(!passwordMatch) {
+  if(!passwordMatch)
     return res.status(401).json({ error: 'Invalid credentials' });
-  }
 
   const sessionId = Math.random().toString(36).substring(2, 15);
-  res.json({sessionId: sessionId});
+  res.json({
+    sessionId: sessionId,
+    role: foundUser.role
+  });
 };
 
 exports.logout = async (req, res) => {

@@ -15,11 +15,53 @@
     <script src="app/app.module.js"></script>
     <script src="app/app.routes.js"></script>
 
+    <!-- Directives -->
+    <script src="app/directives/fileModel.js"></script>
+
+    <!-- Services -->
+    <script src="app/services/userService.js"></script>
+    <script src="app/services/categoryService.js"></script>
+    <script src="app/services/videoService.js"></script>
+
     <!-- Controllers -->
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/mainController.js"></script>
+    <script src="app/controllers/userController.js"></script>
+    <script src="app/controllers/categoryController.js"></script>
+    <script src="app/controllers/videoController.js"></script>
+    <script src="app/controllers/homeController.js"></script>
+
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <div ng-view></div>
+
+<body class="bg-gray-100 text-gray-800" ng-controller="mainController">
+
+    <!-- Shared Header -->
+
+   
+     <div class="bg-white shadow p-4 flex justify-between items-center">
+        
+       
+        <h1 class="text-xl font-bold"><a href="#!/admin">App</a></h1>
+    
+       
+        <div>
+            <a href="#!/admin/users" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn() && isAdmin()">Users</a>
+            <a href="#!/admin/categories" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn() && isAdmin()">Categories</a>
+            <a href="#!/admin/videos" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn() && isAdmin()">Videos</a>
+
+            <a href="#!/logout" class="text-red-600 hover:underline" ng-if="isLoggedIn()">Logout</a>
+            <a href="#!/login" class="text-blue-600 hover:underline" ng-if="!isLoggedIn()">Login</a>
+        
+        </div>
+    </div> 
+
+
+ 
+
+    <!-- Main View -->
+    <div class="p-6">
+        <div ng-view></div>
+    </div>
+
 </body>
 </html>

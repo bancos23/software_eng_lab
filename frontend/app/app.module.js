@@ -2,12 +2,11 @@ angular.module('app', ['ngRoute'])
 
 .run(function($rootScope, $location, $route) {
   $rootScope.$on('$routeChangeStart', function(event, next) {
-    const sessionId = sessionStorage.getItem('session_id');
-    const restrictedRoutes = ['/admin'];
-
-    if (restrictedRoutes.includes(next.originalPath) && !sessionId) {
+    const userRole = sessionStorage.getItem('user_role');
+    
+   if (next && next.originalPath && next.originalPath.startsWith('/admin') && userRole !== 'admin') {
       event.preventDefault();
-      $location.path('/login');
+      //$location.path('/login'); // or redirect to '/home' for users if preferred
     }
 
     if (next.originalPath === '/logout') {

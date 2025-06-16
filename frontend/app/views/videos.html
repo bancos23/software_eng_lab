@@ -1,0 +1,50 @@
+<div class="space-y-6" ng-controller="videoController">
+  <h2 class="text-2xl font-semibold">Video Management</h2>
+
+  <!-- Upload Form -->
+  <form class="grid grid-cols-1 md:grid-cols-4 gap-2"
+        ng-submit="createVideo()">
+
+    <input id="fileInput" type="file"
+           file-model="newVideo.file"
+           class="p-2 border rounded" required>
+
+    <select ng-model="newVideo.categoryId"
+            ng-options="c.ID as c.name for c in categories"
+            class="p-2 border rounded" required>
+      <option value="">Select Category</option>
+    </select>
+
+    <input type="text" ng-model="newVideo.title"
+           placeholder="Video Title"
+           class="p-2 border rounded" required>
+
+    <button type="submit"
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      Upload Video
+    </button>
+  </form>
+
+  <!-- Video List -->
+  <table class="w-full table-auto border-collapse mt-4">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="p-2 border">Title</th>
+        <th class="p-2 border">Category</th>
+        <th class="p-2 border text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="video in videos" class="border-t">
+        <td class="p-2 border">{{ video.title }}</td>
+        <td class="p-2 border">{{ getCategoryName(video.category_id) }}</td>
+        <td class="p-2 border text-center space-x-2">
+          <button ng-click="deleteVideo(video)"
+                  class="bg-red-600 text-white px-2 py-1 rounded">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
