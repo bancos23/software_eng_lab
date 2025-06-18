@@ -5,6 +5,11 @@ const fs = require('fs');
 const UPLOAD_DIR = path.join(__dirname, '..', 'uploads', 'videos');
 fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
+
+/**
+ * Multer storage configuration for video uploads.
+ * - Saves files to the 'uploads/videos' directory.
+ */
 const storage = multer.diskStorage({
     destination: (req, file, cb) => cb(null, UPLOAD_DIR),
     filename: (req, file, cb) => {

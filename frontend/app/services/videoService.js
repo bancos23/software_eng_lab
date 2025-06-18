@@ -17,6 +17,14 @@ angular
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             });
+        },
+
+        update(data, id) {
+            return $http.put(`${BASE}${id}`, data);
+        },
+
+        delete(id) {
+            return $http.delete(`${BASE}${id}`);
         }
     };
 

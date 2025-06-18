@@ -29,3 +29,6 @@ coverage/
 
 # TypeScript (if added later)
 *.tsbuildinfo
+
+# Uploaded files
+backend/uploads/

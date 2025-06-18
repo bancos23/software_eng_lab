@@ -1,0 +1,27 @@
+<!-- Page content -->
+<div class="p-6 space-y-6">
+  <h2 class="text-2xl font-semibold">User Dashboard</h2>
+
+  <div ng-repeat="category in categories" class="border p-4 rounded shadow">
+    <h3 class="text-xl font-semibold mb-4">{{ category.name }}</h3>
+
+    <!-- ⬇⬇ REPLACE JUST THIS SECTION ⬇⬇ -->
+    <div ng-if="category.videos.length > 0"
+         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div ng-repeat="video in category.videos" class="space-y-2">
+        <!-- Video player -->
+        <video class="w-full rounded shadow" height="240" controls ng-if="video.filePath">
+          <source ng-src="http://localhost:3000/{{ video.filePath }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Title -->
+        <p class="font-medium text-center truncate">{{ video.title }}</p>
+      </div>
+    </div>
+    <!-- ⬆⬆ END OF REPLACEMENT ⬆⬆ -->
+
+    <p ng-if="category.videos.length === 0" class="text-gray-500">
+      No videos available in this category.
+    </p>
+  </div>
+</div>

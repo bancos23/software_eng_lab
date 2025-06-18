@@ -1,13 +1,22 @@
 angular.module('app', ['ngRoute'])
-
+.config(function($httpProvider) {
+  $httpProvider.interceptors.push(function() {
+    return {
+      request: function(config) {
+        const token = sessionStorage.getItem('session_id');
+        if (token)
+          config.headers['Authorization'] = `Bearer ${token}`;
+        return config;
+      }
+    };
+  });
+})
 .run(function($rootScope, $location, $route) {
   $rootScope.$on('$routeChangeStart', function(event, next) {
-    const sessionId = sessionStorage.getItem('session_id');
-    const restrictedRoutes = ['/admin'];
-
-    if (restrictedRoutes.includes(next.originalPath) && !sessionId) {
+    const userRole = sessionStorage.getItem('user_role');
+    
+   if (next.originalPath.startsWith('/admin') && userRole !== 'admin') {
       event.preventDefault();
-      $location.path('/login');
     }
 
     if (next.originalPath === '/logout') {

@@ -29,21 +29,23 @@
     <script src="app/controllers/userController.js"></script>
     <script src="app/controllers/categoryController.js"></script>
     <script src="app/controllers/videoController.js"></script>
+    <script src="app/controllers/homeController.js"></script>
+
 </head>
 
 <body class="bg-gray-100 text-gray-800" ng-controller="mainController">
 
     <!-- Shared Header -->
     <div class="bg-white shadow p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold"><a href="#!/admin">App</a></h1>
+        <h1 class="text-xl font-bold"><a href="#!/home">App</a></h1>   
         <div>
-            <a href="#!/admin/users" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn()">Users</a>
-            <a href="#!/admin/categories" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn()">Categories</a>
-            <a href="#!/admin/videos" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn()">Videos</a>
+            <a href="#!/admin/" class="mr-4 text-blue-600 hover:underline" ng-if="isLoggedIn() && isAdmin()">Admin Panel</a>
+            
             <a href="#!/logout" class="text-red-600 hover:underline" ng-if="isLoggedIn()">Logout</a>
             <a href="#!/login" class="text-blue-600 hover:underline" ng-if="!isLoggedIn()">Login</a>
+        
         </div>
-    </div>
+    </div> 
 
     <!-- Main View -->
     <div class="p-6">
@@ -51,7 +53,4 @@
     </div>
 
 </body>
-
-
-
 </html>

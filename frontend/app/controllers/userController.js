@@ -9,7 +9,6 @@ angular.module('app')
     const loadUsers = () => {
         userService.getAll().then(res => {
             $scope.users = res.data;
-            console.log($scope.users);
         });
     };
 

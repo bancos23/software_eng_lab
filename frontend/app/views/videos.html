@@ -35,16 +35,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="video in videos" class="border-t">
-        <td class="p-2 border">{{ video.title }}</td>
-        <td class="p-2 border">{{ getCategoryName(video.category_id) }}</td>
-        <td class="p-2 border text-center space-x-2">
-          <button ng-click="deleteVideo(video)"
-                  class="bg-red-600 text-white px-2 py-1 rounded">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
+  <tr ng-repeat="video in videos" class="border-t">
+    <td class="p-2 border">
+      <span ng-if="!video.editing">{{ video.title }}</span>
+      <input ng-if="video.editing" type="text" ng-model="video.title" class="p-2 border rounded w-full">
+    </td>
+    <td class="p-2 border">
+      <span ng-if="!video.editing">{{ getCategoryName(video.categoryId) }}</span>
+      <select ng-if="video.editing" ng-model="video.categoryId" ng-options="c.ID as c.name for c in categories" class="p-2 border rounded"></select>
+    </td>
+    <td class="p-2 border text-center space-x-2">
+      <button ng-if="!video.editing" ng-click="editVideo(video)" class="bg-yellow-400 text-white px-2 py-1 rounded">Edit</button>
+      <button ng-if="video.editing" ng-click="saveVideo(video)" class="bg-green-600 text-white px-2 py-1 rounded">Save</button>
+      <button ng-click="deleteVideo(video)" class="bg-red-600 text-white px-2 py-1 rounded">Delete</button>
+      <button ng-if="video.editing" ng-click="cancelEdit(video)" class="bg-gray-400 text-white px-2 py-1 rounded">Cancel</button>
+      <label ng-if="video.editing" class="ml-2 cursor-pointer">
+        <span class="underline text-blue-600">Change File</span>
+        <input type="file" file-model="video.newFile" class="hidden">
+      </label>
+    </td>
+  </tr>
+</tbody>
   </table>
 </div>

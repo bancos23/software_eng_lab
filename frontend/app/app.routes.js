@@ -30,6 +30,11 @@ angular.module('app').config(function($routeProvider) {
       controller: 'logoutController',
       title: 'Logout'
     })
+    .when('/home', {
+      templateUrl: 'app/views/home.html',
+      controller: 'homeController',
+      title: 'Home'
+    })
     .otherwise({
       redirectTo: '/login'
     });

@@ -6,9 +6,15 @@ angular.module('app')
         $http.post('http://localhost:3000/api/auth/login', {
             user: $scope.user.username,
             passwd: $scope.user.password
-        }).then(function(response) {
+        }).then(function(response) { 
             sessionStorage.setItem('session_id', response.data.sessionId);
-            $location.path('/admin');
+            sessionStorage.setItem('user_role', response.data.role.toLowerCase());
+
+            if (response.data.role.toLowerCase() === 'admin')
+                $location.path('/admin');
+            else 
+                $location.path('/home');
+        
         }).catch(function(error) {
             $scope.error = error.data.error || 'Login failed. Please try again.';
             $timeout(function() {
